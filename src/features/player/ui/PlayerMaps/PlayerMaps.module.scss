@@ -1,0 +1,125 @@
+@use "@/shared/styles/mixins" as *;
+
+.panel {
+  @include panel;
+}
+
+.grid {
+  @include fit-grid;
+
+  gap: 0.75rem;
+
+  @include from(sm) {
+    gap: 1rem;
+  }
+}
+
+.card {
+  @include panel;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+// The map picture fades into the card under its name
+.cover {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  height: 4rem;
+  align-items: flex-end;
+  padding: 0 1rem 0.5rem;
+  background-color: var(--inset);
+}
+
+.image {
+  z-index: -10;
+  opacity: 0.6;
+}
+
+.fade {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  background-image: var(--image-fade);
+}
+
+.title {
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+
+  @include text(lg);
+}
+
+.table {
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+
+  @include text(sm);
+}
+
+.columns {
+  color: var(--ink-muted);
+  font-size: 0.6875rem;
+}
+
+.gutter {
+  padding-left: 1rem;
+}
+
+.column {
+  padding: 0.625rem 0.375rem 0.25rem;
+  font-weight: 600;
+  text-align: right;
+
+  &:last-child {
+    padding-right: 1rem;
+  }
+}
+
+.range {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.allTime {
+  color: var(--ink-muted);
+}
+
+.label {
+  padding-left: 1rem;
+  font-weight: 600;
+  text-align: left;
+
+  @include text(xs);
+
+  .range & {
+    padding-block: 0.25rem;
+    color: var(--ink-secondary);
+  }
+
+  .allTime & {
+    padding-top: 0.25rem;
+    padding-bottom: 0.75rem;
+  }
+}
+
+.value {
+  padding-inline: 0.375rem;
+  text-align: right;
+
+  .range & {
+    padding-block: 0.25rem;
+  }
+
+  .allTime & {
+    padding-top: 0.25rem;
+    padding-bottom: 0.75rem;
+  }
+
+  &:last-child {
+    padding-right: 1rem;
+  }
+}

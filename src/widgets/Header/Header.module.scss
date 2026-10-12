@@ -1,0 +1,88 @@
+@use "@/shared/styles/mixins" as *;
+
+.header {
+  position: relative;
+  z-index: 30;
+}
+
+// One row from sm up; on phones the navigation moves under the logo
+.bar {
+  display: flex;
+  max-width: var(--layout-width);
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-inline: auto;
+  padding-block: 1rem;
+
+  @include gutter;
+
+  @include from(sm) {
+    flex-wrap: nowrap;
+    column-gap: 1rem;
+  }
+}
+
+.home {
+  display: flex;
+  min-width: 0;
+
+  @include below(sm) {
+    flex: 1;
+  }
+}
+
+.brand {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.5rem;
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+
+  @include text(base);
+
+  @include from(sm) {
+    @include text(lg);
+  }
+}
+
+// The logo lifts a little under the pointer
+.logo {
+  transition-property: transform, translate, scale, rotate;
+  transition-duration: 200ms;
+  transition-timing-function: var(--ease);
+
+  @include can-hover {
+    .brand:hover & {
+      translate: 0 -0.125rem;
+    }
+  }
+}
+
+.name {
+  @include truncate;
+}
+
+.nav {
+  order: 9999;
+  width: 100%;
+
+  @include from(sm) {
+    order: 0;
+    width: auto;
+    margin-left: 1rem;
+  }
+
+  @include hide-in-print;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+
+  @include hide-in-print;
+}

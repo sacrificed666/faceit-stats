@@ -1,0 +1,49 @@
+@use "@/shared/styles/mixins" as *;
+
+.player {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.name {
+  @include truncate;
+}
+
+.link {
+  display: inline-flex;
+  min-width: 0;
+  min-height: 1.5rem;
+  align-items: center;
+  color: var(--ink);
+  font-weight: 600;
+  text-underline-offset: 4px;
+
+  @include hover {
+    color: var(--accent-text);
+    text-decoration-line: underline;
+  }
+}
+
+.text {
+  min-width: 0;
+  color: var(--ink);
+  font-weight: 600;
+
+  @include truncate;
+}
+
+// The whole nickname, where the container makes room, as a table that scrolls does
+.whole {
+  .link,
+  .text {
+    flex-shrink: 0;
+  }
+
+  .name,
+  .text {
+    overflow: visible;
+    text-overflow: clip;
+  }
+}

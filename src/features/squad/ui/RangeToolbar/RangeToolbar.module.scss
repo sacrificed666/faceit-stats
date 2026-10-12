@@ -1,0 +1,268 @@
+@use "@/shared/styles/mixins" as *;
+
+// The toolbar floats under the top edge while the page scrolls
+.toolbar {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+
+  @include hide-in-print;
+}
+
+.bar {
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+  gap: 0.375rem;
+  border: 1px solid var(--line);
+  border-radius: 1.375rem;
+  padding: 0.25rem 0.25rem 0.25rem 0.5rem;
+  background-color: color-mix(in oklab, var(--surface) 85%, transparent);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+
+  @include from(sm) {
+    gap: 0.5rem;
+    padding-left: 0.75rem;
+  }
+
+  @include opaque {
+    background-color: var(--surface);
+    backdrop-filter: none;
+  }
+}
+
+.ranges {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+
+  @include from(sm) {
+    column-gap: 0.375rem;
+  }
+}
+
+.last {
+  color: var(--ink-muted);
+  font-weight: 600;
+
+  @include text(sm);
+
+  @include below(sm) {
+    display: none;
+  }
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.options {
+  display: flex;
+  gap: 0.125rem;
+  border-radius: 9999px;
+  padding: 0.125rem;
+  background-color: var(--inset);
+
+  @include from(sm) {
+    padding: 0.25rem;
+  }
+}
+
+.unit {
+  color: var(--ink-muted);
+  font-size: 0.6875rem;
+  font-weight: 600;
+
+  @include from(sm) {
+    @include text(xs);
+  }
+}
+
+.unitLast {
+  padding-right: 0.25rem;
+
+  @include from(sm) {
+    padding-right: 0.375rem;
+  }
+}
+
+.option {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.input {
+  @include visually-hidden;
+}
+
+.choice {
+  display: block;
+  min-width: 1.75rem;
+  border-radius: 9999px;
+  padding: 0.25rem 0.375rem;
+  color: var(--ink-secondary);
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+
+  @include text(xs);
+  @include transition-colors;
+
+  @media (width < 24rem) {
+    min-width: 1.5rem;
+    padding-inline: 0.25rem;
+  }
+
+  @include from(sm) {
+    min-width: 2rem;
+    padding-inline: 0.5rem;
+  }
+
+  @include hover {
+    background-color: var(--hover);
+    color: var(--ink);
+  }
+
+  .input:checked + & {
+    background-color: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .input:focus-visible + & {
+    @include focus-ring;
+  }
+
+  // The selected range in forced colours mode
+  @media (forced-colors: active) {
+    .input:checked + & {
+      forced-color-adjust: none;
+      background-color: Highlight;
+      color: HighlightText;
+    }
+  }
+}
+
+// Section links in the toolbar on wide screens
+.sections {
+  display: none;
+  border-left: 1px solid var(--line);
+  padding-left: 0.5rem;
+
+  @include from(xl) {
+    display: block;
+  }
+}
+
+.sectionList {
+  display: flex;
+  align-items: center;
+}
+
+.sectionLink {
+  display: block;
+  border-radius: 9999px;
+  padding: 0.375rem 0.75rem;
+  color: var(--ink-secondary);
+  font-weight: 600;
+  white-space: nowrap;
+
+  @include text(sm);
+  @include transition-colors;
+
+  @include hover {
+    background-color: var(--hover);
+    color: var(--ink);
+  }
+}
+
+// Below xl the links fold into a menu, so the toolbar stays one row on phones
+.menu {
+  flex-shrink: 0;
+  border-left: 1px solid var(--line);
+  padding-left: 0.25rem;
+
+  @include from(xl) {
+    display: none;
+  }
+}
+
+// The menu button is the anchor of the menu and grows a little from sm up
+.menuButton {
+  anchor-name: --sections;
+
+  @include from(sm) {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
+
+// The menu of section links that the floating toolbar opens below xl
+.panel {
+  @include panel;
+
+  position: fixed;
+  inset: 4.25rem max(1rem, env(safe-area-inset-right)) auto auto;
+  width: min(15rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 6rem);
+  margin: 0;
+  padding: 0.375rem;
+  overflow-y: auto;
+  color: var(--ink);
+  opacity: 0;
+  translate: 0 -6px;
+  transition:
+    opacity 0.18s ease,
+    translate 0.18s ease,
+    overlay 0.18s allow-discrete,
+    display 0.18s allow-discrete;
+
+  &:popover-open {
+    opacity: 1;
+    translate: 0 0;
+
+    @starting-style {
+      opacity: 0;
+      translate: 0 -6px;
+    }
+  }
+
+  // Opens under its button where anchor positioning works
+  @supports (anchor-name: --sections) {
+    position-anchor: --sections;
+    inset: auto;
+    top: anchor(bottom);
+    right: anchor(right);
+    margin-block-start: 0.5rem;
+    position-try-fallbacks: flip-block;
+  }
+}
+
+.panelList {
+  display: flex;
+  flex-direction: column;
+}
+
+.panelLink {
+  display: block;
+  border-radius: 1.125rem;
+  padding: 0.625rem 0.75rem;
+  color: var(--ink-secondary);
+  font-weight: 600;
+
+  @include text(sm);
+  @include transition-colors;
+
+  @include hover {
+    background-color: var(--hover);
+    color: var(--ink);
+  }
+}

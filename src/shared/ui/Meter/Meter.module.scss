@@ -1,0 +1,38 @@
+@use "@/shared/styles/mixins" as *;
+
+.meter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.label {
+  color: var(--ink-secondary);
+
+  @include text(sm);
+}
+
+.value {
+  color: var(--ink);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+
+  @include text(sm);
+}
+
+.bar {
+  @include meter;
+}
+
+.hint {
+  color: var(--ink-muted);
+
+  @include text(xs);
+}

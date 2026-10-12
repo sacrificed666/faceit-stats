@@ -1,0 +1,132 @@
+@use "@/shared/styles/mixins" as *;
+
+// The settings popover: language rows 0.75rem plus the 1.1rem padding
+.panel {
+  @include panel;
+
+  // Under the header and scrolling with the page, so it stays by its button
+  position: absolute;
+  inset: 4.5rem max(1rem, env(safe-area-inset-right)) auto auto;
+  width: min(22rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 6rem);
+  margin: 0;
+  border-radius: calc(0.75rem + 1.1rem);
+  padding: 1.1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: var(--ink);
+  opacity: 0;
+  scale: 0.96;
+  translate: 0 -6px;
+  transform-origin: top right;
+  transition:
+    opacity 0.2s ease,
+    scale 0.2s ease,
+    translate 0.2s ease,
+    overlay 0.2s allow-discrete,
+    display 0.2s allow-discrete;
+
+  &:popover-open {
+    display: grid;
+    gap: 1.25rem;
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+
+    @starting-style {
+      opacity: 0;
+      scale: 0.96;
+      translate: 0 -6px;
+    }
+  }
+
+  // Opens under the settings button where anchor positioning works
+  @supports (anchor-name: --settings) {
+    position-anchor: --settings;
+    inset: auto;
+    top: anchor(bottom);
+    right: anchor(right);
+    margin-block-start: 0.5rem;
+    position-try-fallbacks: flip-block;
+  }
+
+  // A bottom sheet on phones, fixed to the bottom of the screen
+  @include below(sm) {
+    position: fixed;
+    inset: auto 0 0;
+    width: 100%;
+    max-height: calc(100dvh - 2rem);
+    margin: 0;
+    padding-right: max(1.1rem, env(safe-area-inset-right));
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+    padding-left: max(1.1rem, env(safe-area-inset-left));
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+    scale: 1;
+    translate: 0 100%;
+
+    &:popover-open {
+      translate: 0 0;
+
+      @starting-style {
+        translate: 0 100%;
+      }
+    }
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.title {
+  color: var(--ink);
+  font-weight: 700;
+
+  @include text(lg);
+}
+
+.languages {
+  min-width: 0;
+}
+
+.legend {
+  margin-bottom: 0.375rem;
+  color: var(--ink-muted);
+  font-weight: 600;
+
+  @include text(xs);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25rem;
+}
+
+.language {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  color: var(--ink-secondary);
+  font-weight: 600;
+
+  @include text(sm);
+  @include transition-colors;
+
+  @include hover {
+    background-color: var(--hover);
+    color: var(--ink);
+  }
+
+  &[aria-current="true"] {
+    background-color: var(--accent-soft);
+    color: var(--ink);
+  }
+}

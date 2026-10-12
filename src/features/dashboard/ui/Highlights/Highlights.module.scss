@@ -1,0 +1,79 @@
+@use "@/shared/styles/mixins" as *;
+
+.panel {
+  @include panel;
+}
+
+.grid {
+  @include fit-grid;
+
+  gap: 1rem;
+}
+
+.card {
+  @include panel;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.title {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ink-muted);
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+
+  @include text(xs);
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  background-color: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+// The room link sits in the corner without growing the header
+.room {
+  flex-shrink: 0;
+  margin-block: -0.25rem;
+  margin-right: -0.25rem;
+}
+
+.value {
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+
+  @include text("3xl");
+}
+
+.context {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.5rem;
+  margin-top: auto;
+  color: var(--ink-muted);
+
+  @include text(xs);
+}

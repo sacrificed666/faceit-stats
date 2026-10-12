@@ -1,0 +1,75 @@
+@use "@/shared/styles/mixins" as *;
+
+// The not found page of an address inside a language and outside any language
+.page {
+  display: flex;
+  width: 100%;
+  max-width: var(--layout-width);
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-inline: auto;
+  padding-block: 2.5rem;
+
+  @include gutter;
+
+  @include from(sm) {
+    padding-block: 4rem;
+  }
+}
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding-top: 2.5rem;
+
+  @include from(sm) {
+    padding-top: 4rem;
+  }
+}
+
+.code {
+  color: var(--accent-text);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+
+  @include text("7xl");
+
+  @include from(sm) {
+    @include text("8xl");
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.title {
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+
+  @include text("3xl");
+
+  @include from(sm) {
+    @include text("4xl");
+  }
+}
+
+.body {
+  max-width: 36rem;
+  color: var(--ink-secondary);
+}
+
+.variable {
+  @include code;
+}
+
+.home {
+  @include pill-accent;
+}

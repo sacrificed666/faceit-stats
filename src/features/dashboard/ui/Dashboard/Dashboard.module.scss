@@ -1,0 +1,87 @@
+@use "@/shared/styles/mixins" as *;
+
+.dashboard {
+  @include page-stack;
+}
+
+// The title on the left and the squad avatars on the right from lg up
+.header {
+  display: grid;
+  gap: 2rem;
+  padding-top: 1.5rem;
+
+  @include from(sm) {
+    padding-top: 2.5rem;
+  }
+
+  @include from(lg) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.kicker {
+  @include kicker;
+}
+
+.title {
+  @include page-title;
+
+  text-wrap: balance;
+}
+
+.lead {
+  @include page-lead;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+.updated {
+  color: var(--ink-muted);
+
+  @include text(sm);
+}
+
+.compare {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--accent-text);
+  font-weight: 600;
+
+  @include text(sm);
+
+  @include hover {
+    text-decoration-line: underline;
+  }
+}
+
+// The overlapping avatars of the squad, shown from lg up
+.squad {
+  display: none;
+  padding-bottom: 0.5rem;
+
+  @include from(lg) {
+    display: flex;
+  }
+
+  > :not(:last-child) {
+    margin-inline-end: -0.75rem;
+  }
+}
+
+.member {
+  border-radius: 9999px;
+  box-shadow: var(--shadow);
+}

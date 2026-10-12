@@ -1,0 +1,118 @@
+@use "@/shared/styles/mixins" as *;
+
+.table {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background-color: var(--surface);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  color: var(--ink-secondary);
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+
+  @include text(sm);
+  @include transition-colors;
+
+  @include hover {
+    color: var(--ink);
+  }
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+// The label says what a click does: show or hide the table
+.hide,
+.table[open] .show {
+  display: none;
+}
+
+.table[open] .hide {
+  display: inline;
+}
+
+.chevron {
+  margin-left: auto;
+
+  @include transition-transform;
+
+  .table[open] & {
+    rotate: 180deg;
+  }
+}
+
+// The header row stays in view while the numbers scroll
+.scroller {
+  position: relative;
+  max-height: 30rem;
+  overflow: auto;
+  border-top: 1px solid var(--line);
+
+  @include scrollbar-thin;
+}
+
+.grid {
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+
+  @include text(sm);
+}
+
+.head {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  background-color: var(--surface);
+  box-shadow: inset 0 -1px 0 var(--line);
+  color: var(--ink-muted);
+  font-weight: 600;
+  white-space: nowrap;
+
+  @include text(xs);
+}
+
+.row {
+  border-top: 1px solid var(--line);
+
+  &:first-child {
+    border-top-width: 0;
+  }
+
+  @include hover {
+    background-color: var(--hover);
+  }
+}
+
+.header {
+  padding: 0.5rem 1rem;
+  color: var(--ink);
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.cell {
+  padding: 0.5rem 1rem;
+  color: var(--ink-secondary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+// Numbers sit at the end of a column, text at the start
+.start {
+  text-align: left;
+}
+
+.end {
+  text-align: right;
+}

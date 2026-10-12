@@ -1,0 +1,47 @@
+import { useId } from "react";
+
+import { cx } from "@/shared/lib/cx";
+
+import styles from "./Logo.module.scss";
+
+interface LogoProps {
+  size?: number;
+  className?: string;
+}
+
+// The brand mark
+const Logo = ({ size = 32, className }: LogoProps) => {
+  const id = useId();
+  const fill = `${id}-fill`;
+  const sheen = `${id}-sheen`;
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      width={size}
+      height={size}
+      aria-hidden="true"
+      focusable="false"
+      className={cx(styles.logo, className)}
+    >
+      <defs>
+        <linearGradient id={fill} x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#ff9a4d" />
+          <stop offset="1" stopColor="#ff4a00" />
+        </linearGradient>
+        <linearGradient id={sheen} x1="0" y1="0" x2="0" y2="32" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#ffffff" stopOpacity="0.32" />
+          <stop offset="0.55" stopColor="#ffffff" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <rect width="32" height="32" rx="9" fill={`url(#${fill})`} />
+      <rect width="32" height="32" rx="9" fill={`url(#${sheen})`} />
+      <g fill="#1a0b02">
+        <rect x="11.3" y="7.5" width="4.8" height="17" rx="1.2" />
+        <rect x="11.3" y="7.5" width="12" height="4.6" rx="1.2" />
+        <rect x="11.3" y="14.2" width="9.2" height="4.2" rx="1.2" />
+      </g>
+    </svg>
+  );
+};
+
+export default Logo;

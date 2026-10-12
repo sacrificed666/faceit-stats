@@ -1,0 +1,177 @@
+@use "@/shared/styles/mixins" as *;
+
+.grid {
+  @include fit-grid;
+
+  gap: 0.75rem;
+
+  @include from(sm) {
+    gap: 1rem;
+  }
+}
+
+.item {
+  height: 100%;
+}
+
+// The whole card is the link to the player and lifts under the pointer
+.card {
+  @include panel;
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  transition-property: border-color, translate;
+  transition-duration: 200ms;
+  transition-timing-function: var(--ease);
+
+  @include hover {
+    border-color: var(--line-strong);
+    translate: 0 -0.125rem;
+  }
+
+  @include reduced {
+    @include hover {
+      translate: none;
+    }
+  }
+
+  &:has(a:focus-visible) {
+    @include focus-ring;
+  }
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.names {
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--ink);
+  font-weight: 700;
+
+  @include text(base);
+}
+
+// The link covers the card, and the card shows its focus
+.link {
+  @include truncate;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  &:focus-visible {
+    outline-style: none;
+  }
+}
+
+.region {
+  color: var(--ink-muted);
+
+  @include text(xs);
+  @include truncate;
+}
+
+// The level sits by its ELO, leaving the name room on narrow cards
+.level {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.eloRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.elo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.375rem;
+}
+
+.eloValue {
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+
+  @include text(xl);
+}
+
+.eloUnit {
+  color: var(--ink-muted);
+  font-weight: 600;
+
+  @include text(xs);
+}
+
+// Equal columns, unless a longer label needs room from the short ones
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(min-content, 1fr));
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  padding: 0.375rem 0.25rem;
+  background-color: var(--inset);
+  text-align: center;
+}
+
+.metric {
+  min-width: 0;
+}
+
+.metricLabel {
+  color: var(--ink-muted);
+  font-size: 0.6875rem;
+  font-weight: 600;
+
+  @include truncate;
+}
+
+.metricValue {
+  color: var(--ink);
+  font-weight: 700;
+
+  @include text(sm);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.played {
+  color: var(--ink-muted);
+
+  @include text(xs);
+}

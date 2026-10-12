@@ -1,0 +1,86 @@
+@use "@/shared/styles/mixins" as *;
+
+.status {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 1.5rem;
+
+  @include from(sm) {
+    padding-top: 2.5rem;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.kicker {
+  @include kicker;
+}
+
+.title {
+  @include page-title;
+}
+
+.card {
+  @include panel;
+
+  display: flex;
+  max-width: 42rem;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.body {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--ink-secondary);
+
+  @include text(sm);
+}
+
+.problem {
+  color: var(--ink);
+  font-weight: 700;
+
+  @include text(lg);
+}
+
+.code {
+  @include code;
+}
+
+.missing {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin-top: 0.75rem;
+}
+
+.variable {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.arrow {
+  color: var(--accent-text);
+}

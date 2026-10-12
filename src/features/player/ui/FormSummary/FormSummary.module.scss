@@ -1,0 +1,49 @@
+@use "@/shared/styles/mixins" as *;
+
+.panel {
+  @include panel;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+
+  @include from(sm) {
+    gap: 1rem;
+  }
+
+  @include from(md) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.recent {
+  @include panel;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.label {
+  color: var(--ink-secondary);
+  font-weight: 600;
+
+  @include text(sm);
+}
+
+.order {
+  margin-left: auto;
+  color: var(--ink-muted);
+
+  @include text(xs);
+}
