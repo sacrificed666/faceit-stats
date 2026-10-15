@@ -1,0 +1,196 @@
+@use "@/shared/styles/mixins" as *;
+
+.hero {
+  @include panel;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+// A soft accent glow behind the avatar
+.glow {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  background-image: radial-gradient(48rem 18rem at 12% -6rem, var(--accent-soft), transparent 70%);
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1rem;
+
+  @include from(sm) {
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+
+  @include from(lg) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.main {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+// Avatar and name share a row even on phones; the links follow under the name
+.identity {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 1rem;
+
+  @include from(sm) {
+    gap: 1.5rem;
+  }
+}
+
+.names {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.375rem;
+
+  @include from(sm) {
+    gap: 0.5rem;
+  }
+}
+
+.kicker {
+  @include kicker;
+}
+
+.title {
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+
+  @include text("3xl");
+  @include truncate;
+
+  @include from(sm) {
+    @include text("5xl");
+  }
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  color: var(--ink-secondary);
+
+  @include text(sm);
+}
+
+.fact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.trophy {
+  color: var(--ink-muted);
+}
+
+// The profile links line up with the name from sm up
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+
+  @include from(sm) {
+    gap: 0.5rem;
+    padding-left: 8.5rem;
+  }
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 9999px;
+  padding: 0.375rem 0.75rem;
+  background-color: color-mix(in oklab, var(--surface) 80%, transparent);
+  color: var(--ink);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+
+  @include transition-colors;
+
+  @include from(sm) {
+    gap: 0.5rem;
+    padding: 0.5rem 0.875rem;
+
+    @include text(sm);
+  }
+
+  @include hover {
+    border-color: var(--accent);
+    color: var(--accent-text);
+  }
+
+  @include opaque {
+    background-color: var(--surface);
+    backdrop-filter: none;
+  }
+}
+
+.elo {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: color-mix(in oklab, var(--surface) 85%, transparent);
+  backdrop-filter: blur(8px);
+
+  @include from(sm) {
+    border-radius: 1rem;
+  }
+
+  @include from(lg) {
+    width: 20rem;
+  }
+
+  @include opaque {
+    background-color: var(--surface);
+    backdrop-filter: none;
+  }
+}
+
+.level {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.eloValue {
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+
+  @include text("3xl");
+
+  line-height: 1;
+}
+
+.eloLevel {
+  margin-top: 0.25rem;
+  color: var(--ink-muted);
+  font-weight: 600;
+
+  @include text(xs);
+}

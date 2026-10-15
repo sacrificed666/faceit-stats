@@ -1,0 +1,116 @@
+@use "@/shared/styles/mixins" as *;
+
+.control {
+  min-width: 0;
+
+  @include below(sm) {
+    width: 100%;
+  }
+}
+
+.legend {
+  margin-bottom: 0.375rem;
+  color: var(--ink-muted);
+  font-weight: 600;
+
+  @include text(xs);
+}
+
+// The pills scroll sideways instead of wrapping
+.track {
+  position: relative;
+  display: flex;
+  max-width: 100%;
+  gap: 0.125rem;
+  overflow-x: auto;
+  border-radius: 9999px;
+  padding: 0.25rem;
+  background-color: var(--inset);
+
+  @include scrollbar-thin;
+}
+
+// On phones the pills share the full width, so six fit without scrolling
+.option {
+  position: relative;
+  flex-shrink: 0;
+
+  @include below(sm) {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+.fill {
+  position: relative;
+  flex: 1;
+  text-align: center;
+}
+
+.input {
+  @include visually-hidden;
+}
+
+// A pill with an optional icon before its label
+.choice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  padding: 0.375rem;
+  color: var(--ink-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+
+  @include transition-colors;
+
+  @include from(sm) {
+    padding-inline: 0.75rem;
+
+    @include text(sm);
+  }
+
+  @include hover {
+    background-color: var(--hover);
+    color: var(--ink);
+  }
+
+  .input:checked + & {
+    background-color: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .input:focus-visible + & {
+    @include focus-ring;
+  }
+
+  // The selected option of a radio group
+  @media (forced-colors: active) {
+    .input:checked + & {
+      forced-color-adjust: none;
+      background-color: Highlight;
+      color: HighlightText;
+    }
+  }
+}
+
+.small {
+  padding: 0.25rem 0.5rem;
+
+  @include text(xs);
+
+  @include from(sm) {
+    padding-inline: 0.625rem;
+  }
+}
+
+.description {
+  margin-top: 0.375rem;
+  color: var(--ink-muted);
+
+  @include text(xs);
+}

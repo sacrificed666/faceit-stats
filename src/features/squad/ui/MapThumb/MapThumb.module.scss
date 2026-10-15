@@ -1,0 +1,56 @@
+@use "@/shared/styles/mixins" as *;
+
+// Display that the class of a caller can override, such as hiding it on phones
+:where(.thumb) {
+  display: inline-flex;
+}
+
+.thumb {
+  position: relative;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--inset);
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.initials {
+  color: var(--ink-muted);
+  font-weight: 700;
+}
+
+// Three sizes: a chip in a sentence, a table row and a column header
+.xs {
+  width: 2rem;
+  height: 1.25rem;
+  border-radius: 5px;
+
+  .initials {
+    font-size: 0.5rem;
+  }
+}
+
+.sm {
+  width: 2.75rem;
+  height: 1.75rem;
+  border-radius: 0.375rem;
+
+  .initials {
+    font-size: 0.625rem;
+  }
+}
+
+.md {
+  width: 3.5rem;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+
+  .initials {
+    @include text(xs);
+  }
+}

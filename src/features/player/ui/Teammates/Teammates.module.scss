@@ -1,0 +1,15 @@
+@use "@/shared/styles/mixins" as *;
+
+.panel {
+  @include panel;
+}
+
+.bars {
+  @include panel;
+
+  padding: 1rem;
+
+  @include from(sm) {
+    padding: 1.5rem;
+  }
+}

@@ -1,0 +1,122 @@
+@use "@/shared/styles/mixins" as *;
+
+.scroller {
+  @include table-panel;
+}
+
+.table {
+  width: 100%;
+  min-width: 56rem;
+
+  @include text(sm);
+}
+
+.head {
+  border-bottom: 1px solid var(--line);
+}
+
+.th {
+  @include table-head;
+
+  text-align: left;
+}
+
+.position {
+  width: 3rem;
+}
+
+.sticky {
+  @include sticky-cell;
+}
+
+.row {
+  border-bottom: 1px solid var(--line);
+
+  &:last-child {
+    border-bottom-width: 0;
+  }
+
+  @include hover {
+    background-color: var(--hover);
+  }
+}
+
+.cell {
+  padding: 0.625rem 0.75rem;
+}
+
+.rank {
+  color: var(--ink-muted);
+  font-weight: 600;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+
+.player {
+  @include sticky-cell;
+  @include sticky-cell-hover(".row");
+
+  font-weight: 400;
+  text-align: left;
+}
+
+.values {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.metricValues {
+  gap: 0.375rem;
+}
+
+.elo {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.matches {
+  color: var(--ink-secondary);
+  text-align: right;
+}
+
+.count {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--ink-muted);
+}
+
+// The sorted column stands out from the others
+.metric {
+  color: var(--ink-secondary);
+  font-weight: 600;
+}
+
+.sorted {
+  color: var(--ink);
+}
+
+.foot {
+  border-top: 1px solid var(--line-strong);
+  color: var(--ink-muted);
+}
+
+.average {
+  font-weight: 600;
+  text-align: right;
+
+  @include text(xs);
+}
+
+.averageLabel {
+  @include sticky-cell;
+
+  font-weight: 600;
+  text-align: left;
+
+  @include text(xs);
+}

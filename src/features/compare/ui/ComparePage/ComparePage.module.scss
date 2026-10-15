@@ -1,0 +1,168 @@
+@use "@/shared/styles/mixins" as *;
+
+.page {
+  @include page-stack;
+}
+
+.needTwo {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 1.5rem;
+
+  @include from(sm) {
+    padding-top: 2.5rem;
+  }
+}
+
+.kicker {
+  @include kicker;
+}
+
+.title {
+  @include page-title;
+
+  text-wrap: balance;
+}
+
+.lead {
+  @include page-lead;
+}
+
+.message {
+  @include panel;
+
+  padding: 1.5rem;
+  color: var(--ink-secondary);
+}
+
+.map {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pick {
+  @include panel;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.25rem;
+
+  @include from(sm) {
+    padding: 2rem;
+  }
+}
+
+// Phones stack the pickers so whole nicknames fit
+.pickers {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: end;
+  gap: 0.75rem;
+
+  @include from(sm) {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.swap {
+  justify-self: center;
+}
+
+.swapIcon {
+  @include below(sm) {
+    rotate: 90deg;
+  }
+}
+
+// The two players face each other on every screen, like a scoreboard
+.versus {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+
+  @include from(sm) {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
+
+.vs {
+  display: none;
+  width: 3.5rem;
+  height: 3.5rem;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  justify-self: center;
+  border-radius: 9999px;
+  background-color: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 800;
+  text-transform: uppercase;
+
+  @include text(lg);
+
+  @include from(sm) {
+    display: inline-flex;
+  }
+}
+
+.record {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.25rem;
+
+  @include text(sm);
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.factEnd {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.factLabel {
+  color: var(--ink-muted);
+  font-weight: 600;
+
+  @include text(xs);
+}
+
+.factValue {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+// Form and lifetime side by side from xl up
+.tables {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3rem;
+
+  @include from(sm) {
+    gap: 4rem;
+  }
+
+  @include from(xl) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}

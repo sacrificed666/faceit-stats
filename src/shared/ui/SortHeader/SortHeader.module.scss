@@ -1,0 +1,43 @@
+@use "@/shared/styles/mixins" as *;
+
+.header {
+  @include table-head;
+
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.375rem;
+  padding: 0.125rem 0.25rem;
+  white-space: nowrap;
+
+  @include transition-colors;
+
+  @include hover {
+    color: var(--ink);
+  }
+
+  // Numbers end at the right edge, so the arrow sits before the label
+  .header:not(.left) & {
+    flex-direction: row-reverse;
+  }
+}
+
+.active {
+  color: var(--ink);
+}
+
+.arrow {
+  opacity: 0.3;
+
+  .active & {
+    opacity: 1;
+  }
+}

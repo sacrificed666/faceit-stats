@@ -1,0 +1,15 @@
+@use "@/shared/styles/mixins" as *;
+
+.picker {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.pickerLabel {
+  color: var(--ink-muted);
+  font-weight: 600;
+
+  @include text(xs);
+}

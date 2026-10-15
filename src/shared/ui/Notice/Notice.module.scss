@@ -1,0 +1,43 @@
+@use "@/shared/styles/mixins" as *;
+
+.notice {
+  display: flex;
+  gap: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: var(--surface);
+}
+
+.warning {
+  border-color: color-mix(in oklab, var(--bad) 30%, transparent);
+  background-color: var(--bad-soft);
+}
+
+.icon {
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+  color: var(--ink-muted);
+
+  .warning & {
+    color: var(--bad);
+  }
+}
+
+.body {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  @include text(sm);
+}
+
+.title {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.text {
+  color: var(--ink-secondary);
+}

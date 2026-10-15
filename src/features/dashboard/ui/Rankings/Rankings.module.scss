@@ -1,0 +1,22 @@
+@use "@/shared/styles/mixins" as *;
+
+.panel {
+  @include panel;
+
+  padding: 1rem;
+
+  @include from(sm) {
+    padding: 1.5rem;
+  }
+}
+
+.rank {
+  flex-shrink: 0;
+  width: 1.25rem;
+  color: var(--ink-muted);
+  font-weight: 600;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+
+  @include text(xs);
+}

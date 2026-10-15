@@ -1,0 +1,129 @@
+@use "@/shared/styles/mixins" as *;
+
+// Lineups on the left and duos on the right from lg up
+.grid {
+  display: grid;
+  gap: 1rem;
+
+  @include from(lg) {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: start;
+  }
+}
+
+.panel {
+  @include panel;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+
+  @include from(sm) {
+    padding: 1.5rem;
+  }
+}
+
+.title {
+  color: var(--ink);
+  font-weight: 700;
+
+  @include text(base);
+}
+
+// A long name of a lineup takes a second line instead of an ellipsis
+.lineup {
+  color: var(--ink);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+
+  @include text(sm);
+}
+
+.duos {
+  display: flex;
+  flex-direction: column;
+
+  > :not(:last-child) {
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+.duo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding-block: 0.75rem;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+// The two avatars overlap
+.avatars {
+  display: flex;
+  flex-shrink: 0;
+
+  > :not(:last-child) {
+    margin-inline-end: -0.5rem;
+  }
+}
+
+// Room for two names, or the numbers move to a line of their own
+.names {
+  display: flex;
+  flex: 1;
+  min-width: min(100%, 7rem);
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.375rem;
+
+  @include text(sm);
+}
+
+.name {
+  max-width: 100%;
+}
+
+.and {
+  color: var(--ink-muted);
+}
+
+.numbers {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  @include text(sm);
+}
+
+.matches {
+  color: var(--ink-secondary);
+}
+
+.rate {
+  width: 3.5rem;
+  color: var(--ink);
+  font-weight: 700;
+  text-align: right;
+}
+
+.last {
+  display: none;
+  width: 8rem;
+  color: var(--ink-muted);
+  text-align: right;
+
+  @include text(xs);
+
+  @include from(sm) {
+    display: inline;
+  }
+}

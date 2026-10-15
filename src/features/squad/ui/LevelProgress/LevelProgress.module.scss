@@ -1,0 +1,17 @@
+@use "@/shared/styles/mixins" as *;
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.bar {
+  @include meter;
+}
+
+.caption {
+  color: var(--ink-muted);
+
+  @include text(xs);
+}

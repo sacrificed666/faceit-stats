@@ -1,0 +1,43 @@
+@use "@/shared/styles/mixins" as *;
+
+.avatar {
+  flex-shrink: 0;
+  aspect-ratio: 1;
+  max-width: none;
+  border-radius: 9999px;
+  background-color: var(--inset);
+  box-shadow: 0 0 0 1px var(--line);
+  object-fit: cover;
+}
+
+// The initial when there is no picture
+.initial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-secondary);
+  font-weight: 700;
+}
+
+// A cut-out ring that separates overlapping avatars on a card
+.surface {
+  box-shadow: 0 0 0 2px var(--surface);
+}
+
+// A wide cut-out ring for avatars on the page background
+.plane {
+  box-shadow: 0 0 0 4px var(--plane);
+}
+
+// A wide accent ring for the avatar of a hero
+.accent {
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+// A smaller avatar on phones
+.phone {
+  @include below(sm) {
+    width: var(--avatar-phone) !important;
+    height: var(--avatar-phone) !important;
+  }
+}

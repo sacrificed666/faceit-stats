@@ -1,0 +1,44 @@
+@use "@/shared/styles/mixins" as *;
+
+.button {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  color: var(--ink-secondary);
+
+  @include transition-colors;
+
+  @include hover {
+    background-color: var(--hover);
+    color: var(--ink);
+  }
+}
+
+// Sizes that the class of a caller can override
+:where(.medium) {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+:where(.small) {
+  width: 2rem;
+  height: 2rem;
+}
+
+// A filled circle, such as the close button of a panel
+.inset {
+  background-color: var(--inset);
+}
+
+// An outlined circle that turns to the accent under the pointer
+.outline {
+  border: 1px solid var(--line-strong);
+
+  @include hover {
+    border-color: var(--accent);
+    background-color: transparent;
+    color: var(--accent-text);
+  }
+}

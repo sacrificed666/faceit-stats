@@ -1,0 +1,131 @@
+@use "@/shared/styles/mixins" as *;
+
+// Placeholders shaped like the page that is loading
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+// Placeholders never grow past the column, so a phone never scrolls sideways
+.line,
+.title {
+  max-width: 100%;
+}
+
+.line {
+  height: 0.75rem;
+  border-radius: 9999px;
+  background-color: var(--inset);
+}
+
+.kicker {
+  width: 12rem;
+}
+
+.lead {
+  width: 100%;
+  max-width: 36rem;
+  height: 1rem;
+}
+
+.crumb {
+  width: 10rem;
+  height: 1rem;
+}
+
+.title {
+  width: 18rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background-color: var(--inset);
+
+  @include from(sm) {
+    height: 4rem;
+  }
+}
+
+.titleWide {
+  width: 20rem;
+}
+
+.panel {
+  @include panel;
+}
+
+.tile {
+  height: 6rem;
+}
+
+.card {
+  height: 18rem;
+}
+
+.hero {
+  height: 18rem;
+
+  @include from(sm) {
+    height: 20rem;
+  }
+}
+
+.chart {
+  height: 20rem;
+}
+
+.picker {
+  height: 16rem;
+}
+
+.table {
+  height: 24rem;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+
+  @include from(sm) {
+    gap: 1rem;
+  }
+
+  @include from(lg) {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.cards {
+  display: grid;
+  gap: 1rem;
+
+  @include from(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include from(lg) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include from("2xl") {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+
+  @include from(sm) {
+    gap: 1rem;
+  }
+
+  @include from(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include from(xl) {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}

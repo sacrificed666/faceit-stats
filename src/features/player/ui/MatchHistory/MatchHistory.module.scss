@@ -1,0 +1,163 @@
+@use "@/shared/styles/mixins" as *;
+
+.filter {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  color: var(--ink-secondary);
+  font-weight: 600;
+
+  @include text(sm);
+}
+
+.select {
+  width: 11rem;
+}
+
+// The picture of the map filter when every map is shown
+.allMaps {
+  display: inline-flex;
+  width: 2rem;
+  height: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
+  color: var(--ink-muted);
+}
+
+.scroller {
+  @include table-panel;
+}
+
+.table {
+  width: 100%;
+  min-width: 64rem;
+
+  @include text(sm);
+}
+
+.head {
+  border-bottom: 1px solid var(--line);
+}
+
+.th {
+  @include table-head;
+}
+
+.start {
+  text-align: left;
+}
+
+.end {
+  text-align: right;
+}
+
+.abbr {
+  text-decoration-line: none;
+}
+
+.sticky {
+  @include sticky-cell;
+}
+
+.row {
+  border-bottom: 1px solid var(--line);
+
+  &:last-child {
+    border-bottom-width: 0;
+  }
+
+  @include hover {
+    background-color: var(--hover);
+  }
+}
+
+.cell {
+  padding: 0.625rem 0.75rem;
+}
+
+.date {
+  @include sticky-cell;
+  @include sticky-cell-hover(".row");
+
+  font-weight: 400;
+  text-align: left;
+}
+
+.match {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mapName {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.time {
+  color: var(--ink-muted);
+  white-space: nowrap;
+
+  @include text(xs);
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+// Squad mates in the match, overlapping
+.mates {
+  display: flex;
+  flex-shrink: 0;
+
+  > :not(:last-child) {
+    margin-inline-end: -0.375rem;
+  }
+}
+
+.kda {
+  color: var(--ink-secondary);
+  text-align: right;
+  white-space: nowrap;
+}
+
+// The sorted column stands out from the others
+.metric {
+  color: var(--ink-secondary);
+  font-weight: 600;
+  text-align: right;
+}
+
+.sorted {
+  color: var(--ink);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.mvp {
+  @include chip;
+
+  background-color: var(--inset);
+  color: var(--ink-secondary);
+}
+
+.multiKill {
+  @include chip;
+
+  background-color: var(--accent-soft);
+  color: var(--accent-text);
+}
