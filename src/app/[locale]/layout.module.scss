@@ -1,0 +1,13 @@
+@use "@/shared/styles/mixins" as *;
+
+// The page content between the header and the footer
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--layout-width);
+  margin-inline: auto;
+  padding-bottom: 3rem;
+  outline-style: none;
+
+  @include gutter;
+}

@@ -1,0 +1,297 @@
+@use "@/shared/styles/mixins" as *;
+@use "@/shared/styles/tokens";
+
+// Shared and light tokens by default
+:root {
+  @include tokens.shared;
+  @include tokens.light;
+}
+
+// Dark when the system is dark, unless light was picked
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    @include tokens.dark;
+  }
+}
+
+// Dark when picked in the settings
+:root[data-theme="dark"] {
+  @include tokens.dark;
+}
+
+// Reduced effects keep only short shadows
+:root[data-effects="reduced"] {
+  --shadow: var(--shadow-flat);
+}
+
+// More contrast when the system asks for it
+@media (prefers-contrast: more) {
+  :root {
+    @include tokens.light-contrast;
+  }
+
+  :root[data-theme="dark"] {
+    @include tokens.dark-contrast;
+  }
+}
+
+// The dark contrast tokens for a dark system theme
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    @include tokens.dark-contrast;
+  }
+}
+
+// Sizes include padding and borders, and nothing has default spacing
+*,
+::after,
+::before,
+::backdrop,
+::file-selector-button {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+}
+
+// Line height, font and smooth scrolling for the whole page
+html {
+  line-height: 1.5;
+  font-family: var(--font-sans);
+  tab-size: 4;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+// The page background with a soft glow at the top
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background-color: var(--plane);
+  background-image: radial-gradient(60rem 28rem at 50% -8rem, var(--plane-glow), transparent 70%);
+  background-repeat: no-repeat;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 1em;
+}
+
+abbr:where([title]) {
+  text-decoration: underline dotted;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+// Numbers line up in every table
+table {
+  border-collapse: collapse;
+  border-color: inherit;
+  text-indent: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+summary {
+  display: list-item;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  vertical-align: middle;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+// Form controls take the font and colour of their surroundings
+button,
+input,
+select,
+textarea,
+::file-selector-button {
+  border-radius: 0;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  letter-spacing: inherit;
+  opacity: 1;
+}
+
+button,
+input:where([type="button"], [type="reset"], [type="submit"]),
+::file-selector-button {
+  appearance: button;
+}
+
+::placeholder {
+  color: color-mix(in oklab, currentcolor 50%, transparent);
+  opacity: 1;
+}
+
+[hidden]:where(:not([hidden="until-found"])) {
+  display: none !important;
+}
+
+:focus-visible {
+  @include focus-ring;
+}
+
+::selection {
+  background-color: var(--accent-soft);
+}
+
+// Section links stop below the floating toolbar
+[id] {
+  scroll-margin-top: 5rem;
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+// The first stop of the keyboard, shown only while it has the focus
+.skip-link {
+  position: fixed;
+  top: max(0.75rem, env(safe-area-inset-top));
+  left: max(0.75rem, env(safe-area-inset-left));
+  z-index: 50;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  background-color: var(--accent);
+  box-shadow: var(--shadow);
+  color: var(--accent-ink);
+  font-weight: 700;
+  translate: 0 -6rem;
+
+  @include text(sm);
+  @include transition-transform;
+
+  &:focus-visible {
+    translate: 0 0;
+  }
+}
+
+// Sections fade in once the address has been applied
+[data-query-scope] {
+  transition: opacity 0.2s ease;
+}
+
+// Hidden while pending, revealed after three seconds anyway
+html[data-pending] [data-query-scope] {
+  opacity: 0;
+  transition: none;
+  animation: reveal 0s 3s forwards;
+}
+
+// Shows hidden sections when JavaScript never arrives
+@keyframes reveal {
+  to {
+    opacity: 1;
+  }
+}
+
+// No smooth scrolling, transitions or animations
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// System colours for the data marks and the current page in forced colours mode
+@media (forced-colors: active) {
+  // The current page and section are underlined
+  [aria-current="page"],
+  [aria-current="true"] {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  // Bars and lines in system colours
+  :root .mark {
+    forced-color-adjust: none;
+    background-color: Highlight;
+  }
+
+  :root .mark-muted {
+    forced-color-adjust: none;
+    background-color: GrayText;
+  }
+
+  :root .mark-line {
+    forced-color-adjust: none;
+    background-color: CanvasText;
+  }
+}
+
+// Paper is white, so a printed page uses the light tokens in any theme
+@media print {
+  :root,
+  :root[data-theme],
+  :root:where(:not([data-theme="light"])) {
+    @include tokens.light;
+  }
+
+  // No background glow on paper
+  body {
+    background: none;
+  }
+
+  // Shadows and motion mean nothing on paper
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

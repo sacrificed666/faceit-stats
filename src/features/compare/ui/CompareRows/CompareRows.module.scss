@@ -1,0 +1,118 @@
+@use "@/shared/styles/mixins" as *;
+
+.scroller {
+  @include table-panel;
+
+  padding: 0.5rem;
+
+  @include from(sm) {
+    padding: 1rem;
+  }
+}
+
+// Narrow enough for a 320 px phone, so both players stay in view
+.table {
+  width: 100%;
+  min-width: 16rem;
+
+  @include text(sm);
+}
+
+.names {
+  color: var(--ink-muted);
+
+  @include text(xs);
+}
+
+.name {
+  width: 38%;
+  padding: 0 0.5rem 0.5rem;
+  font-weight: 600;
+}
+
+.metricHead {
+  padding: 0 0.5rem 0.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.row {
+  border-top: 1px solid var(--line);
+
+  &:first-child {
+    border-top-width: 0;
+  }
+}
+
+.cell {
+  padding: 0.625rem 0.5rem;
+
+  // Tighter on the smallest phones, so the map names fit as well
+  @include below(sm) {
+    padding-inline: 0.375rem;
+  }
+}
+
+.start {
+  text-align: right;
+}
+
+.end {
+  text-align: left;
+}
+
+.metric {
+  padding: 0.625rem 0.5rem;
+  color: var(--ink-muted);
+  font-weight: 600;
+  text-align: center;
+
+  @include text(xs);
+
+  @include below(sm) {
+    padding-inline: 0.375rem;
+  }
+}
+
+// The better value in bold
+.value {
+  display: block;
+  color: var(--ink-secondary);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.ahead {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+// A bar that grows away from the metric names in the middle
+.track {
+  display: flex;
+  width: 100%;
+  height: 0.375rem;
+  border-radius: 9999px;
+  background-color: var(--inset);
+}
+
+.towardsStart {
+  justify-content: flex-end;
+}
+
+.bar {
+  height: 100%;
+  background-color: var(--data-muted);
+}
+
+.strong {
+  background-color: var(--data);
+}
+
+.roundStart {
+  border-radius: 9999px 0 0 9999px;
+}
+
+.roundEnd {
+  border-radius: 0 9999px 9999px 0;
+}

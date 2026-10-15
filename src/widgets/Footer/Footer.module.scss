@@ -1,0 +1,63 @@
+@use "@/shared/styles/mixins" as *;
+
+.footer {
+  width: 100%;
+  max-width: var(--layout-width);
+  margin-inline: auto;
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+
+  @include gutter;
+}
+
+// Author and version on the left, data and source on the right
+.bar {
+  @include panel;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding: 1rem 1.25rem;
+
+  @include text(sm);
+}
+
+.owner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.375rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.dot {
+  color: var(--ink-muted);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.125rem 1rem;
+  color: var(--ink-secondary);
+  font-weight: 500;
+}
+
+.link {
+  min-height: 1.5rem;
+  color: var(--ink);
+  text-decoration-line: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 4px;
+
+  @include hover {
+    color: var(--accent-text);
+  }
+}
+
+.version {
+  color: var(--ink-secondary);
+  font-weight: 500;
+}

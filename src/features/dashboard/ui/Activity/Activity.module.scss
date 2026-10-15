@@ -1,0 +1,216 @@
+@use "@/shared/styles/mixins" as *;
+
+.panel {
+  @include panel;
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.scroller {
+  @include table-panel;
+}
+
+.table {
+  width: 100%;
+
+  @include text(sm);
+
+  @include from(sm) {
+    min-width: 48rem;
+  }
+}
+
+.head {
+  border-bottom: 1px solid var(--line);
+}
+
+.th {
+  @include table-head;
+
+  padding-inline: 0.5rem;
+
+  @include from(sm) {
+    padding-inline: 0.75rem;
+  }
+}
+
+.cell {
+  padding: 0.5rem;
+
+  @include from(sm) {
+    padding-inline: 0.75rem;
+  }
+}
+
+.start {
+  text-align: left;
+}
+
+.end {
+  text-align: right;
+}
+
+// Columns that phones fold under the player
+.wide {
+  @include below(sm) {
+    display: none;
+  }
+}
+
+.abbr {
+  text-decoration-line: none;
+}
+
+// One match: a group of rows, one per squad member
+.match {
+  border-bottom: 1px solid var(--line);
+
+  &:last-child {
+    border-bottom-width: 0;
+  }
+
+  @include hover {
+    background-color: var(--hover);
+  }
+}
+
+.mapCell {
+  @include sticky-cell;
+  @include sticky-cell-hover(".match");
+
+  font-weight: 400;
+}
+
+.mapHeader {
+  @include sticky-cell;
+}
+
+.map {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.thumb {
+  @include below(sm) {
+    display: none;
+  }
+}
+
+.mapName {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.time {
+  color: var(--ink-muted);
+  font-weight: 400;
+
+  @include text(xs);
+
+  @include from(sm) {
+    white-space: nowrap;
+  }
+}
+
+.shared {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+  border-radius: 9999px;
+  padding: 1px 0.375rem;
+  background-color: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  white-space: nowrap;
+
+  @include below(sm) {
+    padding-block: 0.25rem;
+  }
+}
+
+// Phones keep the icon and leave the words to screen readers
+.sharedLabel {
+  @include below(sm) {
+    @include visually-hidden;
+  }
+}
+
+.result {
+  @include below(sm) {
+    padding-right: 0.125rem;
+  }
+}
+
+.playerCell {
+  font-weight: 400;
+}
+
+// Phones fold the numbers under the name instead of four more columns
+.folded {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.375rem;
+  margin-top: 0.125rem;
+  padding-left: 2rem;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+
+  @include text(xs);
+
+  @include from(sm) {
+    display: none;
+  }
+}
+
+.strong {
+  font-weight: 600;
+}
+
+.kda {
+  color: var(--ink-secondary);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat {
+  color: var(--ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.room {
+  @include below(sm) {
+    padding-left: 0;
+  }
+}
+
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.shown {
+  color: var(--ink-muted);
+
+  @include text(sm);
+}
+
+.button {
+  @include pill-outline;
+}

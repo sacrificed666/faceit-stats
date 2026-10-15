@@ -1,0 +1,8 @@
+// Green for a good value and red for a weak one; the parent sets other colours
+.good {
+  color: var(--good);
+}
+
+.bad {
+  color: var(--bad);
+}

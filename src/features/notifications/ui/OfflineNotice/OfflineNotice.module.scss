@@ -1,0 +1,39 @@
+@use "@/shared/styles/mixins" as *;
+
+// A live region that never leaves the page, so going offline is announced
+.region {
+  position: fixed;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  left: 50%;
+  z-index: 40;
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+  translate: -50% 0;
+
+  @include hide-in-print;
+}
+
+// A pill at the bottom of the screen, above the home indicator
+.notice {
+  @include panel;
+
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 9999px;
+  padding: 0.75rem 1.125rem;
+  background-color: var(--raised);
+  color: var(--ink);
+  font-weight: 600;
+  animation: rise 0.4s var(--ease-out);
+
+  @include text(sm);
+}
+
+// The notice rises into view
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 1rem;
+  }
+}

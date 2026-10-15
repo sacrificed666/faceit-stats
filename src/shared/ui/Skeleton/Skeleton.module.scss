@@ -1,0 +1,22 @@
+@use "@/shared/styles/mixins" as *;
+
+// The placeholders pulse while the page renders
+.placeholders {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-top: 1.5rem;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @include from(sm) {
+    gap: 4rem;
+    padding-top: 2.5rem;
+  }
+}
+
+// Fades the placeholders out and in again
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}

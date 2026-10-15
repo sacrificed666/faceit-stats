@@ -1,0 +1,48 @@
+@use "@/shared/styles/mixins" as *;
+
+// The icon above the text on phones and beside it from tablets up
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+
+  @include from(sm) {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: var(--inset);
+  color: var(--ink-muted);
+}
+
+.text {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.title {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.hint {
+  max-width: 28rem;
+  color: var(--ink-muted);
+
+  @include text(sm);
+}

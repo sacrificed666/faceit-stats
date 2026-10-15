@@ -1,0 +1,110 @@
+@use "@/shared/styles/mixins" as *;
+
+.list {
+  position: relative;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+// The label on the left, the bar and its number on the right
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+
+  @include from(sm) {
+    grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+  }
+}
+
+.label {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.value {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.track {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 1.5rem;
+}
+
+// The bar grows in, then glides to its new length when the metric changes
+.bar {
+  position: absolute;
+  inset-block: 0.125rem;
+  left: 0;
+  width: var(--bar);
+  border-radius: 0 4px 4px 0;
+  background-color: var(--data);
+  transition: width 500ms var(--ease-out);
+
+  @starting-style {
+    width: 0;
+  }
+}
+
+.muted {
+  background-color: var(--data-muted);
+}
+
+.reference {
+  position: absolute;
+  inset-block: 0;
+  width: 1px;
+  background-color: var(--ink-muted);
+}
+
+.number {
+  flex-shrink: 0;
+  width: 3.5rem;
+  color: var(--ink);
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+
+  @include text(sm);
+}
+
+.detail {
+  grid-column: span 2 / span 2;
+  margin-top: -0.375rem;
+  color: var(--ink-muted);
+
+  @include text(xs);
+
+  @include from(sm) {
+    grid-column-start: 2;
+  }
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  color: var(--ink-muted);
+
+  @include text(xs);
+}
+
+.legendLine {
+  display: inline-block;
+  width: 1px;
+  height: 0.75rem;
+  background-color: var(--ink-muted);
+}

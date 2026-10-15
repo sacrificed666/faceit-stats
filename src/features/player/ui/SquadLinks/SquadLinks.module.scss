@@ -1,0 +1,75 @@
+@use "@/shared/styles/mixins" as *;
+
+.squad {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.title {
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+
+  @include text(xl);
+
+  @include from(sm) {
+    @include text("2xl");
+  }
+}
+
+.grid {
+  @include fit-grid;
+
+  gap: 0.75rem;
+}
+
+.card {
+  @include panel;
+
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+
+  @include transition-colors;
+
+  @include hover {
+    border-color: var(--line-strong);
+  }
+}
+
+.names {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.name {
+  color: var(--ink);
+  font-weight: 600;
+
+  @include truncate;
+}
+
+.elo {
+  color: var(--ink-muted);
+
+  @include text(xs);
+}
+
+.back {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--accent-text);
+  font-weight: 600;
+
+  @include text(sm);
+
+  @include hover {
+    text-decoration-line: underline;
+  }
+}

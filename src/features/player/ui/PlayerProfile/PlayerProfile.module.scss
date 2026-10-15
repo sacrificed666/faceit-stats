@@ -1,0 +1,5 @@
+@use "@/shared/styles/mixins" as *;
+
+.profile {
+  @include page-stack;
+}

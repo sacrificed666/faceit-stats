@@ -1,0 +1,25 @@
+@use "@/shared/styles/mixins" as *;
+
+// Base layout that the class of a caller can override
+:where(.link) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+// A round button with only the arrow, such as a link to a match room
+.icon {
+  border-radius: 9999px;
+  padding: 0.375rem;
+  color: var(--ink-muted);
+
+  @include hover {
+    background-color: var(--hover);
+    color: var(--accent-text);
+  }
+}
+
+.arrow {
+  flex-shrink: 0;
+  opacity: 0.7;
+}

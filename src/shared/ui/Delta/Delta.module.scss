@@ -1,0 +1,20 @@
+@use "@/shared/styles/mixins" as *;
+
+.delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  color: var(--ink-muted);
+  font-weight: 600;
+
+  @include text(xs);
+}
+
+// Green above the average and red below it
+.up {
+  color: var(--good);
+}
+
+.down {
+  color: var(--bad);
+}

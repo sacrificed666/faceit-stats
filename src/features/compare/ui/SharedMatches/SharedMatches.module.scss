@@ -1,0 +1,136 @@
+@use "@/shared/styles/mixins" as *;
+
+.scroller {
+  @include table-panel;
+}
+
+.table {
+  width: 100%;
+  min-width: 44rem;
+
+  @include text(sm);
+}
+
+.head {
+  border-bottom: 1px solid var(--line);
+}
+
+.columns {
+  color: var(--ink-muted);
+
+  @include text(xs);
+}
+
+.th {
+  padding: 0.625rem 0.75rem;
+  font-weight: 600;
+}
+
+.start {
+  text-align: left;
+}
+
+.end {
+  text-align: right;
+}
+
+.row {
+  border-bottom: 1px solid var(--line);
+
+  &:last-child {
+    border-bottom-width: 0;
+  }
+
+  @include hover {
+    background-color: var(--hover);
+  }
+}
+
+.cell {
+  padding: 0.625rem 0.75rem;
+}
+
+.matchCell {
+  font-weight: 400;
+  text-align: left;
+}
+
+.match {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mapName {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.time {
+  color: var(--ink-muted);
+  white-space: nowrap;
+
+  @include text(xs);
+}
+
+.result {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+// Same team or opponents
+.relation {
+  border-radius: 9999px;
+  padding: 0.125rem 0.5rem;
+  background-color: var(--inset);
+  color: var(--ink-secondary);
+  font-size: 0.6875rem;
+  font-weight: 700;
+}
+
+.together {
+  background-color: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.winner {
+  color: var(--ink);
+  font-weight: 600;
+
+  @include text(xs);
+}
+
+// One player's K-D-A with the rating, K/D and ADR of that match
+.line {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.kda {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.stats {
+  display: flex;
+  gap: 0.5rem;
+  color: var(--ink-secondary);
+  font-weight: 600;
+
+  @include text(xs);
+}
+
+.statLabel {
+  color: var(--ink-muted);
+  font-weight: 400;
+}
