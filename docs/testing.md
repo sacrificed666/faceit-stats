@@ -71,7 +71,7 @@ Tests sit next to the code they cover as `*.test.ts(x)`, and every component has
 
 Vitest runs with `pool: "vmThreads"`: one jsdom per worker, and every test file in a fresh context of its own, which is about twice as fast as a new process per file. Built-in browser objects such as `location` cannot be redefined in that pool: wrap a call such as `location.reload()` in a small module and spy on that module instead.
 
-Unit tests run without React Compiler, the same in all three apps, so coverage counts the branches of the source rather than the cache checks the compiler adds. The production build, the end-to-end tests and Lighthouse cover the compiled code.
+Unit tests run without React Compiler, the same in all four apps, so coverage counts the branches of the source rather than the cache checks the compiler adds. The production build, the end-to-end tests and Lighthouse cover the compiled code.
 
 > [!NOTE]
 > A few Next.js modules only work inside a Next.js build. Tests replace them with `vi.mock`: `next/cache` for `cacheLife` in the loader and the footer, and `next/root-params` for the language of the current route.
@@ -160,7 +160,7 @@ Every spec except Lighthouse runs in **Desktop Chrome** and in **Desktop Safari*
 Every audit of the accessibility category must pass as well, including the ones Lighthouse does not weigh into the score. Each run attaches the full Lighthouse HTML report to its test in the Playwright report, so a failed budget can be inspected in CI.
 
 > [!NOTE]
-> Locally the pages score 0.97 to 1 for performance and 1 everywhere else; the thresholds leave room for slower CI machines. The pages weigh about 385 to 445 KB, counting the shells Next.js prefetches for the visible links. Each page weight limit sits about 35 to 40 KB above what the page weighs today, the same rule in all three apps, so a heavier dependency or a bigger prefetch fails the build early. `/pl/compare` weighs the most because Polish needs the Latin Extended font file next to the Latin one. Inlining the CSS with `experimental.inlineCss` was measured too and made every page about 20 KB heavier, because the prefetched pages then carry the styles as well.
+> Locally the pages score 0.97 to 1 for performance and 1 everywhere else; the thresholds leave room for slower CI machines. The pages weigh about 385 to 445 KB, counting the shells Next.js prefetches for the visible links. Each page weight limit sits about 35 to 40 KB above what the page weighs today, the same rule in all four apps, so a heavier dependency or a bigger prefetch fails the build early. `/pl/compare` weighs the most because Polish needs the Latin Extended font file next to the Latin one. Inlining the CSS with `experimental.inlineCss` was measured too and made every page about 20 KB heavier, because the prefetched pages then carry the styles as well.
 
 ## 📐 Conventions
 
@@ -183,4 +183,4 @@ Every audit of the accessibility category must pass as well, including the ones 
 | 🧩 Functions  |      96 % |
 | 📏 Lines      |      97 % |
 
-The suite currently covers about 98 % of statements, 90 % of branches, 98 % of functions and 98.6 % of lines. Each threshold sits about a point below the current coverage, the same rule in all three apps, so a change can only keep or raise it; raise them again when new tests add a point. Routes in `src/app`, the image generators in `src/features/seo/og` and the test helpers are excluded, because the end-to-end tests and the production build cover them. CI publishes a coverage summary and uploads the HTML coverage and Playwright reports.
+The suite currently covers about 98 % of statements, 90 % of branches, 98 % of functions and 98.6 % of lines. Each threshold sits about a point below the current coverage, the same rule in all four apps, so a change can only keep or raise it; raise them again when new tests add a point. Routes in `src/app`, the image generators in `src/features/seo/og` and the test helpers are excluded, because the end-to-end tests and the production build cover them. CI publishes a coverage summary and uploads the HTML coverage and Playwright reports.
